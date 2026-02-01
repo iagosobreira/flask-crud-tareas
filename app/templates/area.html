@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Hola {{usuario}}</h1>
+    <br>
+    <form method="POST" action="{{url_for('tareas.agregar_tareas')}}">
+        <label>Tarea</label>
+        <input type="text" name="tarea" required>
+        <br>
+        <input type="submit" value="Guardar Tarea">
+    </form>
+    <br>
+    <h3>Tareas Pendientes:</h3>
+    <ul>
+        {% for tarea in tareas %}
+            {% if not tarea.realizada %}
+            <li>
+                <form method="POST" action="{{url_for('tareas.realizar_tarea')}}">
+                    {{tarea}}
+                    <input hidden name="id_tarea" value="{{tarea.id}}">
+                    <input type="submit" value="Realizar">
+                </form>
+            </li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+    <br>
+    <h3>Tareas cumplidas:</h3>
+    <ul>
+        {% for tarea in tareas %}
+            {% if tarea.realizada %}
+            <li>
+                <form method="POST" action="{{url_for('tareas.eliminar_tarea')}}">
+                    {{tarea}}
+                    <input hidden name="id_tarea" value="{{tarea.id}}">
+                    <input type="submit" value="Borrar">
+                </form>
+            </li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+    <br>
+    <a href="{{url_for('users.logout')}}">Logout</a>
+
+
+</body>
+</html>
