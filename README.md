@@ -22,24 +22,28 @@ Una aplicación web de gestión de tareas desarrollada con Flask que permite a l
 
 ```
 Flask_Tareas/
-├── app/
-│   ├── app.py              # Aplicación principal de Flask
-│   ├── config.py           # Configuración de la aplicación
-│   ├── extensions.py       # Extensiones de Flask
-│   ├── main/               # Rutas principales
+├── app/                           # Aplicación principal
+│   ├── app.py                     # Aplicación principal de Flask
+│   ├── config.py                  # Configuración de la aplicación
+│   ├── extensions.py              # Extensiones de Flask
+│   ├── .env.example               # Ejemplo de variables de entorno
+│   ├── main/                      # Módulo de rutas principales
 │   │   └── routes.py
-│   ├── tareas/             # Módulo de gestión de tareas
-│   │   ├── routes.py
-│   │   └── services.py
-│   ├── usuario/            # Módulo de autenticación
-│   │   └── routes.py
-│   ├── templates/          # Plantillas HTML
-│   │   ├── index.html
-│   │   ├── registro.html
-│   │   └── area.html
-│   └── static/             # Archivos estáticos (CSS, JS, imágenes)
-├── requirements.txt        # Dependencias del proyecto
-└── tareas_flask           # Archivo ejecutable (si existe)
+│   ├── tareas/                    # Módulo de gestión de tareas
+│   │   ├── routes.py              # Rutas de gestión de tareas
+│   │   └── services.py            # Lógica de negocio de tareas
+│   ├── usuario/                   # Módulo de autenticación
+│   │   └── routes.py              # Rutas de usuario
+│   ├── templates/                 # Plantillas HTML
+│   │   ├── layout.html            # Plantilla base
+│   │   ├── index.html             # Página de inicio/login
+│   │   ├── registro.html          # Formulario de registro
+│   │   └── area.html              # Área personal del usuario
+│   └── static/                    # Archivos estáticos
+│       └── css/
+│           └── login.css          # Estilos para login
+├── README.md                      # Documentación del proyecto
+└── requirements.txt               # Dependencias del proyecto
 ```
 
 ## Instalación
