@@ -5,12 +5,9 @@ body{
     align-items: center;
     margin: 0;
     height: 100vh;
-    background-color: rgb(28, 145, 255);
 }
 
-
-
-.contenedor-inicio-sesion{
+.contenedor-sesion{
     background-color: white;
     border-radius: 10px;
     padding: 30px;
@@ -19,8 +16,7 @@ body{
  
 }
 
-
-.formulario-inicio-sesion{
+.formulario-sesion{
     display: flex;
     flex-direction: column;
     gap: 15px;
@@ -28,7 +24,7 @@ body{
     
 }
 
-.boton-registro{
+.boton-registro, .boton-volver{
     display: block;
     text-decoration: none;
     color: black;
@@ -37,16 +33,16 @@ body{
     box-sizing: border-box;
 }
 
-.boton-registro:hover{
+.boton-registro:hover, .boton-volver:hover{
     color: gray;
 }
 
-.formulario-inicio-sesion > input{
+.formulario-sesion > input{
     border: none;
     border-bottom: 1px solid;
 }
 
-.formulario-inicio-sesion input[type="submit"]{
+.formulario-sesion input[type="submit"]{
     border-radius: 20px;
     color: white;
     padding: 5px;

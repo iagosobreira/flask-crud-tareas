@@ -1,15 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>index</title>
-    <link rel="stylesheet" href="../static/css/index.css">
-</head>
-<body>
-    <section class="contenedor-inicio-sesion">
+{% extends 'layout.html' %}
+
+{% block title %} Index {% endblock %}
+{% block link %}<link rel="stylesheet" href="../static/css/login.css">{% endblock %}
+
+{% block body %}
+    <section class="contenedor-sesion">
         <h1>LOGIN</h1>
-        <form class="formulario-inicio-sesion" method="POST" action="{{url_for('users.login')}}">
+        <form class="formulario-sesion" method="POST" action="{{url_for('users.login')}}">
             <label>Correo:</label>
             <input type="email" name="email" placeholder="tucorreo@gmail.com" required>
             <label>Password:</label>
@@ -19,6 +16,4 @@
         <br>
         <a class="boton-registro" href="{{url_for('main.registro')}}">Registrarse</a>
     </section>
-
-</body>
-</html>
+{% endblock %}
