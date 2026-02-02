@@ -1,0 +1,21 @@
+
+.contenedor-area{
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    background-color: white;
+    border-radius: 10px;
+    font-size: medium;
+}
+
+.formulario-tareas input[type="text"]{
+    border-radius: 10px;
+    padding: 5px;
+}
+
+.borde-boton{
+    padding: 5px;
+    border: none;
+    border-bottom: 1px solid;
+    margin-left: 20px;
+}

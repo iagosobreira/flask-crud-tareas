@@ -1,18 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+{% extends 'layout.html' %}
+
+{% block title %} Area Personal {% endblock %}
+{% block link %}<link rel="stylesheet" href="../static/css/area.css">{% endblock %}
+
+{% block body %}
+<section class="contenedor-area">
     <h1>Hola {{usuario}}</h1>
-    <br>
-    <form method="POST" action="{{url_for('tareas.agregar_tareas')}}">
+    
+    <form method="POST" class="formulario-tareas" action="{{url_for('tareas.agregar_tareas')}}">
         <label>Tarea</label>
-        <input type="text" name="tarea" required>
-        <br>
-        <input type="submit" value="Guardar Tarea">
+        <input type="text" name="tarea" placeholder="tu tarea aquí..." required>
+        <input class="borde-boton" type="submit" value="Guardar Tarea">
     </form>
     <br>
     <h3>Tareas Pendientes:</h3>
@@ -21,24 +19,24 @@
             {% if not tarea.realizada %}
             <li>
                 <form method="POST" action="{{url_for('tareas.realizar_tarea')}}">
-                    {{tarea}}
+                    {{tarea.tarea}}
                     <input hidden name="id_tarea" value="{{tarea.id}}">
-                    <input type="submit" value="Realizar">
+                    <input class="borde-boton" type="submit" value="Realizar">
                 </form>
             </li>
             {% endif %}
         {% endfor %}
     </ul>
     <br>
-    <h3>Tareas cumplidas:</h3>
+    <h3>Tareas Realizadas:</h3>
     <ul>
         {% for tarea in tareas %}
             {% if tarea.realizada %}
             <li>
                 <form method="POST" action="{{url_for('tareas.eliminar_tarea')}}">
-                    {{tarea}}
+                    ✅ {{tarea.tarea}}
                     <input hidden name="id_tarea" value="{{tarea.id}}">
-                    <input type="submit" value="Borrar">
+                    <input class="boton-borrar borde-boton" type="submit" value="Borrar">
                 </form>
             </li>
             {% endif %}
@@ -46,7 +44,5 @@
     </ul>
     <br>
     <a href="{{url_for('users.logout')}}">Logout</a>
-
-
-</body>
-</html>
+</section>
+{% endblock %}

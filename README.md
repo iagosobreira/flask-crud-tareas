@@ -41,7 +41,8 @@ Flask_Tareas/
 │   │   └── area.html              # Área personal del usuario
 │   └── static/                    # Archivos estáticos
 │       └── css/
-│           └── login.css          # Estilos para login
+│           ├── login.css          # Estilos para login
+│           └── area.css           # Estilos para area
 ├── README.md                      # Documentación del proyecto
 └── requirements.txt               # Dependencias del proyecto
 ```
