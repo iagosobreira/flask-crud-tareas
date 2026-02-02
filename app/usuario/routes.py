@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, session, redirect, url_for
+from flask import Blueprint, render_template, request, session, redirect, url_for, flash
 from sqlalchemy import text 
 from extensions import db
 from tareas.services import obtener_tareas_usuario
@@ -28,10 +28,11 @@ def crear_registro():
             
             db.session.commit()
             
+            flash("Usuario creado correctamente", "success")
             return redirect(url_for("main.inicio"))
         
         else:
-            
+            flash("El correo ya está registrado", "error")
             return redirect(url_for("main.registro"))
     
 @user_db.route("/login", methods=["POST"])

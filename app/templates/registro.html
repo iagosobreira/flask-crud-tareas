@@ -4,18 +4,21 @@
 {% block link %}<link rel="stylesheet" href="../static/css/login.css">{% endblock %}
 
 {% block body %}
-<section class="contenedor-sesion">
-    <h1>REGISTER</h1>
-    <form class="formulario-sesion" method="POST" action="{{url_for('users.crear_registro')}}">
-        <label>Nombre</label>
-        <input type="text" name="nombre" placeholder="Tu nombre" required>
-        <label>Correo</label>
-        <input type="email" name="email" placeholder="tucorreo@gmail.com" required>
-        <label>Password</label>
-        <input type="password" name="password" placeholder="*******" required>
-        <input type="submit" value="Registrarse">
-    </form>
-    <br>
-    <a class="boton-volver" href="{{url_for('users.volver')}}">Volver</a>
-</section>
+    <section class="contenedor-sesion">
+        <h1>REGISTER</h1>
+        <form class="formulario-sesion" method="POST" action="{{url_for('users.crear_registro')}}">
+            <label>Nombre</label>
+            <input type="text" name="nombre" placeholder="Tu nombre" required>
+            <label>Correo</label>
+            <input type="email" name="email" placeholder="tucorreo@gmail.com" required>
+            <label>Password</label>
+            <input type="password" name="password" placeholder="*******" required>
+            <input type="submit" value="Registrarse">
+        </form>
+        <br>
+        <a class="boton-volver" href="{{url_for('users.volver')}}">Volver</a>
+    </section>
+
+    
+
 {% endblock %}
