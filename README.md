@@ -33,7 +33,8 @@ Flask_Tareas/
 │   │   ├── routes.py              # Rutas de gestión de tareas
 │   │   └── services.py            # Lógica de negocio de tareas
 │   ├── usuario/                   # Módulo de autenticación
-│   │   └── routes.py              # Rutas de usuario
+│   │   ├── routes.py              # Rutas de usuario
+│   │   └── services.py            # Pequeña lógica usuario
 │   ├── templates/                 # Plantillas HTML
 │   │   ├── layout.html            # Plantilla base
 │   │   ├── index.html             # Página de inicio/login

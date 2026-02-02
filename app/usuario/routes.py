@@ -2,7 +2,8 @@ from flask import Blueprint, render_template, request, session, redirect, url_fo
 from sqlalchemy import text 
 from extensions import db
 from tareas.services import obtener_tareas_usuario
-
+from functools import wraps
+from usuario.services import comprobarEmail
 
 user_db=Blueprint("users", __name__)
 
@@ -15,17 +16,23 @@ def crear_registro():
         email=request.form['email']
         password=request.form['password']
         
-        sql=text('INSERT INTO usuarios (correo, contrasena, nombre) values (:email, :password, :nombre)')
+        if comprobarEmail(email):
         
-        db.session.execute(sql,{
-            "email":email,
-            "password": password,
-            "nombre": nombre
-        })
+            sql=text('INSERT INTO usuarios (correo, contrasena, nombre) values (:email, :password, :nombre)')
+            
+            db.session.execute(sql,{
+                "email":email,
+                "password": password,
+                "nombre": nombre
+            })
+            
+            db.session.commit()
+            
+            return redirect(url_for("main.inicio"))
         
-        db.session.commit()
-        
-        return redirect(url_for("main.inicio"))
+        else:
+            
+            return redirect(url_for("main.registro"))
     
 @user_db.route("/login", methods=["POST"])
 def login():
@@ -52,7 +59,17 @@ def logout():
 def volver():
     return redirect(url_for("main.inicio"))
 
+def login_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if "user_id" not in session:
+            return redirect(url_for("login"))
+        return f(*args, **kwargs)
+    return decorated_function
+
+
 @user_db.route("/area")
+@login_required
 def area():
     if "user_id" not in session:
         return redirect(url_for("users.login"))
@@ -64,4 +81,6 @@ def area():
         usuario=session["user_name"],
         tareas=tareas
     )
+    
+
 
