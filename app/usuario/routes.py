@@ -1,4 +1,5 @@
 from flask import Blueprint, render_template, request, session, redirect, url_for, flash
+from werkzeug.security import generate_password_hash, check_password_hash
 from sqlalchemy import text 
 from extensions import db
 from tareas.services import obtener_tareas_usuario
@@ -15,6 +16,7 @@ def crear_registro():
         nombre=request.form['nombre']
         email=request.form['email']
         password=request.form['password']
+        password_hash = generate_password_hash(password)
         
         if comprobarEmail(email):
         
@@ -22,7 +24,7 @@ def crear_registro():
             
             db.session.execute(sql,{
                 "email":email,
-                "password": password,
+                "password": password_hash,
                 "nombre": nombre
             })
             
@@ -43,7 +45,7 @@ def login():
     sql = text("SELECT * FROM usuarios WHERE correo = :correo")
     result = db.session.execute(sql, {'correo': correo}).fetchone()
 
-    if result and password == result.contrasena:
+    if result and check_password_hash(result.contrasena, password):
         session['user_id'] = result.id
         session['user_name'] = result.nombre
 
