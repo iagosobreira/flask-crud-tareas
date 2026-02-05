@@ -106,6 +106,24 @@ La aplicación utiliza PostgreSQL con tablas principales:
 - `usuarios`: Almacena información de los usuarios
 - `tareas`: Almacena las tareas de cada usuario
 
+## Esquema de la base de datos
+
+```sql
+CREATE TABLE usuarios (
+    id SERIAL PRIMARY KEY,
+    correo VARCHAR(100) UNIQUE NOT NULL,
+    contrasena TEXT NOT NULL,
+    nombre VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE tareas (
+    id SERIAL PRIMARY KEY,
+    tarea TEXT NOT NULL,
+    realizada BOOLEAN DEFAULT FALSE,
+    id_usuario INTEGER REFERENCES usuarios(id)
+);
+```
+
 ## Contribución
 
 1. Fork del proyecto
